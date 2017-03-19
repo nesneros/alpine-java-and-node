@@ -3,7 +3,7 @@ FROM openjdk:8-jdk-alpine
 ENV VERSION=v7.7.3 NPM_VERSION=4
 ENV CONFIG_FLAGS="--fully-static --without-npm" DEL_PKGS="libstdc++" RM_DIRS=/usr/include
 
-RUN apk add --no-cache bash curl  curl gir make gcc g++ python linux-headers binutils-gold gnupg libstdc++ && \
+RUN apk add --no-cache bash curl git make gcc g++ python linux-headers binutils-gold gnupg libstdc++ && \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys \
         94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
         FD3A5288F042B6850C66B31F09FE44734EB7990E \
@@ -21,7 +21,7 @@ RUN apk add --no-cache bash curl  curl gir make gcc g++ python linux-headers bin
     make -j$(getconf _NPROCESSORS_ONLN) && \
     make install && \
     cd / && \
-    apk del curl make gcc g++ python linux-headers binutils-gold gnupg ${DEL_PKGS} && \
+    apk del make gcc g++ python linux-headers binutils-gold gnupg ${DEL_PKGS} && \
     rm -rf ${RM_DIRS} /node-${VERSION}* /usr/share/man /tmp/* /var/cache/apk/* \
        /root/.npm /root/.node-gyp /root/.gnupg /usr/lib/node_modules/npm/man \
        /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html /usr/lib/node_modules/npm/scripts
