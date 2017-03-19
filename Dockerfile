@@ -1,7 +1,7 @@
 FROM openjdk:8-jdk-alpine
 
 ENV VERSION=v7.7.3 NPM_VERSION=4
-ENV CONFIG_FLAGS="--fully-static --without-npm" DEL_PKGS="libstdc++" RM_DIRS=/usr/include
+ENV CONFIG_FLAGS="--fully-static" DEL_PKGS="libstdc++" RM_DIRS=/usr/include
 
 RUN apk add --no-cache bash curl git make gcc g++ python linux-headers binutils-gold gnupg libstdc++ && \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys \
