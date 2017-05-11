@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-ENV VERSION=v7.7.3 NPM_VERSION=4
+ENV VERSION=v7.10.0 NPM_VERSION=4
 ENV CONFIG_FLAGS="--fully-static" DEL_PKGS="libstdc++" RM_DIRS=/usr/include
 
 RUN apk add --no-cache bash curl git make gcc g++ python linux-headers binutils-gold gnupg libstdc++ && \
@@ -26,7 +26,4 @@ RUN apk add --no-cache bash curl git make gcc g++ python linux-headers binutils-
        /root/.npm /root/.node-gyp /root/.gnupg /usr/lib/node_modules/npm/man \
        /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html /usr/lib/node_modules/npm/scripts
 
-
-
-
-
+RUN npm install -g yarn
